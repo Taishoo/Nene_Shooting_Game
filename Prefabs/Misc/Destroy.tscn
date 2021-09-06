@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 10, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 11.49
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+color = Color( 0.596078, 0.384314, 0.317647, 1 )
+
+[node name="Destroy" type="Particles2D"]
+visible = false
+position = Vector2( 7.989, 8.01698 )
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.59
+process_material = SubResource( 1 )

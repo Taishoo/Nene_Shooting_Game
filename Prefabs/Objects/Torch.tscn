@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/Objects/Torch.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/LightMask.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Torch" type="StaticBody2D"]
+scale = Vector2( 3, 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 7.9841, 5.98991 )
+scale = Vector2( 0.324539, 0.324539 )
+texture = ExtResource( 2 )
+color = Color( 1, 0.823529, 0.494118, 1 )
+energy = 1.5
+shadow_enabled = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}

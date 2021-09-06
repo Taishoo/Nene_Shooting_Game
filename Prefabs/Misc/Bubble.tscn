@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/Objects/Bubble/Bubble_Burst.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Objects/Bubble/Bubble_Float.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Misc/Bubble.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Float",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Burst",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Burst"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Burst" ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "burst_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Float"
+length = 0.15
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Float" ]
+}
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 3.30671
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 3.61345
+
+[node name="Bubble" type="KinematicBody2D"]
+scale = Vector2( 3, 3 )
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "Float"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Burst = SubResource( 4 )
+anims/Float = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.824959, 0.648182 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="Surface_Tension" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Surface_Tension"]
+position = Vector2( 0.471405, 0.530329 )
+shape = SubResource( 6 )

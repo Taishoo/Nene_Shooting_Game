@@ -1,0 +1,300 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Sprites/Mobs/Creeper/Idle/Creeper_Idle2.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Mobs/Creeper/Walk/Creeper_Walk2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Mobs/Creeper/Walk/Creeper_Walk1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Mobs/Creeper/Idle/Creeper_Idle1.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Mobs/Creeper.gd" type="Script" id=5]
+[ext_resource path="res://Prefabs/Misc/Bubble_Emitter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Shaders/Whiten.shader" type="Shader" id=7]
+[ext_resource path="res://Prefabs/Misc/Bomb_Tick.gd" type="Script" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 7 )
+shader_param/whitening = 0.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Faint"
+length = 0.15
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Walk" ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.15
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Walk" ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 1.2
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Idle" ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.6
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Walk" ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 1.5
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.35, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "blink"
+}, {
+"args": [  ],
+"method": "animation_finished"
+} ]
+}
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 8.43275
+height = 19.0489
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 71.2713
+height = 106.032
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 7.58044, 2.51659 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 40.2577, 24.1593 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 8.01516, 4.14099 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 10, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 11.49
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+color = Color( 0.137255, 0.356863, 0, 1 )
+
+[sub_resource type="CapsuleShape2D" id=14]
+radius = 8.18063
+
+[node name="Creeper" type="KinematicBody2D"]
+scale = Vector2( 3, 3 )
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 0, -20 )
+scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 2 )
+animation = "Walk"
+script = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+anims/Faint = SubResource( 3 )
+anims/Fall = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
+
+[node name="Bomb" type="AnimationPlayer" parent="AnimatedSprite"]
+anims/Tick = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -0.104991, -15.434 )
+shape = SubResource( 8 )
+
+[node name="Sensors" type="Node2D" parent="."]
+
+[node name="Vision" type="Area2D" parent="Sensors"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensors/Vision"]
+position = Vector2( 0, -20 )
+rotation = 1.5708
+shape = SubResource( 9 )
+
+[node name="JumpSensor" type="Area2D" parent="Sensors"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensors/JumpSensor"]
+modulate = Color( 0.819608, 0, 0, 1 )
+position = Vector2( 2.69656, -5.1108 )
+shape = SubResource( 10 )
+
+[node name="Trigger" type="Area2D" parent="Sensors"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensors/Trigger"]
+position = Vector2( 0, -21.5668 )
+shape = SubResource( 11 )
+
+[node name="Timers" type="Node2D" parent="."]
+visible = false
+
+[node name="PatrolTimer" type="Timer" parent="Timers"]
+
+[node name="BombTimer" type="Timer" parent="Timers"]
+
+[node name="Head" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2( -0.0742366, -28.2118 )
+shape = SubResource( 12 )
+
+[node name="Bubble_Emitter" parent="." instance=ExtResource( 6 )]
+position = Vector2( -0.353551, -11.6673 )
+emitting = false
+
+[node name="Destroy" type="Particles2D" parent="."]
+position = Vector2( -0.212574, -15.2649 )
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.59
+process_material = SubResource( 13 )
+
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( -0.0786591, -15.4953 )
+shape = SubResource( 14 )
+[connection signal="body_entered" from="Sensors/Vision" to="." method="_on_Vision_body_entered"]
+[connection signal="body_exited" from="Sensors/Vision" to="." method="_on_Vision_body_exited"]
+[connection signal="body_entered" from="Sensors/JumpSensor" to="." method="_on_JumpSensor_body_entered"]
+[connection signal="area_entered" from="Sensors/Trigger" to="." method="_on_Trigger_area_entered"]
+[connection signal="timeout" from="Timers/PatrolTimer" to="." method="_on_PatrolTimer_timeout"]

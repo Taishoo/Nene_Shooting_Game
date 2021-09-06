@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Objects/Leaf.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Environment/Leaf_Oak.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.0058, 7.99414 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 10, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 11.49
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+color = Color( 0.0470588, 0.317647, 0, 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 64.1738, 133.35 )
+
+[node name="Leaf_Oak" type="StaticBody2D"]
+scale = Vector2( 3, 3 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 7.98937, 8.00434 )
+shape = SubResource( 1 )
+
+[node name="Destroy" type="Particles2D" parent="."]
+visible = false
+position = Vector2( 7.989, 8.01698 )
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.59
+process_material = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="WoodDetector" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WoodDetector"]
+position = Vector2( 7.989, 8.01698 )
+shape = SubResource( 3 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="WoodDetector" to="." method="_on_WoodDetector_body_entered"]
+[connection signal="body_exited" from="WoodDetector" to="." method="_on_WoodDetector_body_exited"]
