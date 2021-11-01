@@ -12,7 +12,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Animate"
 length = 0.4
 loop = true
@@ -42,13 +42,13 @@ tracks/1/keys = {
 "values": [ "Coin" ]
 }
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 9.06505
 
 [node name="Coin" type="StaticBody2D"]
-scale = Vector2( 3, 3 )
+scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -56,11 +56,11 @@ frames = SubResource( 1 )
 animation = "Coin"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
-anims/Animate = SubResource( 3 )
+anims/Animate = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -3,7 +3,7 @@ extends "res://Scripts/Mob.gd"
 const type = "PLAYER"
 var walk_speed = 300
 const JUMP_FORCE = -900
-var state = IDLE
+var state = START
 var can_fire = true
 
 var on_water:bool = false
@@ -28,6 +28,7 @@ enum {
 	FAINT,
 	JUMP,
 	FALL,
+	START,
 }
 
 func _ready():
@@ -48,8 +49,13 @@ func _physics_process(delta):
 			faint()
 		FALL:
 			fall()
+		START:
+			start()
 	
 #================State functions=================
+
+func start():
+	animationPlayer.play("Start")
 
 func idle():
 	if not just_jumped:
@@ -146,6 +152,9 @@ func setAngleVector(targetPosition):
 	return Vector2(cos(angle), sin(angle))
 	
 #=================Sensor / Event Functions=================
+
+func start_animation_finished():
+	state = IDLE
 
 func jump_animation_finished():
 	just_jumped = false
