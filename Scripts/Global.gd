@@ -1,10 +1,10 @@
 extends Node
 
-const GRAVITY = 30
+const GRAVITY:float = 30.00
 
-var CAN_MOVE = true
-var CAN_PAUSE = true
-var CAN_JUMP = true
+var CAN_MOVE:bool = true
+var CAN_PAUSE:bool = true
+var CAN_JUMP:bool = true
 
 
-var points_on_hold = 0
+var points_on_hold:int = 0

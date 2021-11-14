@@ -1,18 +1,13 @@
 extends "res://Scripts/Mob.gd"
 
-const type = "ENEMY"
+const type:String = "ENEMY"
 
 export var points:int = 2
 
-var velocity = Vector2(0,0)
 var state = IDLE
 
-var on_water = false
-var underwater = false
-var on_lava:bool = false
-
-var health = 5
-var max_health = health
+var health:int = 5
+var max_health:int = health
 
 onready var animationPlayer = get_node("AnimatedSprite/AnimationPlayer")
 onready var animatedSprite = get_node("AnimatedSprite")

@@ -11,7 +11,7 @@ onready var sprite = get_node("Sprite")
 func _ready():
 	pass
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	special_checker()
 	
 #============special functions==============
@@ -39,7 +39,7 @@ func destroy():
 
 #========sensor/event functions=============
 
-func _on_Hurtbox_area_entered(area):
+func _on_Hurtbox_area_entered(_area):
 	# var body = area.get_parent()
 	
 	# if "type" in body:

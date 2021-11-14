@@ -45,7 +45,7 @@ func _physics_process(delta):
 	
 #================state functions=============
 
-func travel(delta):
+func travel(_delta):
 	animationPlayer.play("Fire")
 	velocity = location * speed 
 	velocity = move_and_slide(velocity)

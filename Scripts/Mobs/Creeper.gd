@@ -1,6 +1,6 @@
 extends "res://Scripts/Mob.gd"
 
-const type = "ENEMY"
+const type:String = "ENEMY"
 
 export var patrol_area:Vector2 = Vector2(200,200)
 export var points:int = 2
@@ -13,10 +13,6 @@ var damage = 12
 var health = 10
 var max_health = health
 
-var on_water:bool = false
-var underwater:bool = false
-var on_lava:bool = false
-var velocity:Vector2 = Vector2(0,0)
 var patrol_start_pos
 
 var just_patrolled = false
@@ -89,7 +85,7 @@ func patrol(delta):
 
 	apply_velocity(delta)
 
-func chase(delta):
+func chase(delta) -> void:
 	animationPlayer.play("Walk" if velocity.x != 0 else "Idle")
 	var player = get_tree().get_current_scene().get_node_or_null("World/Nene")
 	var chase_direction = calculate_chase_vector(self.get_position(), player.get_position(), walk_speed)
@@ -103,7 +99,7 @@ func chase(delta):
 	set_flip(chase_direction)
 	apply_velocity(delta)
 
-func faint():
+func faint() -> void:
 	particles.visible = true
 	particles.emitting = true
 	get_node("CollisionShape2D").disabled = true
@@ -132,9 +128,9 @@ func special_checker():
 	if health <= 0:
 		state = FAINT
 
-func take_damage(damage):
+func take_damage(dmg):
 	animatedSprite.set_modulate(Color(255,0,0,1))
-	health -= damage
+	health -= dmg
 	state = CHASE
 
 	yield(get_tree().create_timer(0.1), "timeout")

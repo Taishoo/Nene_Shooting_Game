@@ -11,7 +11,6 @@ var active = false
 
 const bomb = preload("res://Prefabs/Misc/Explosion.tscn")
 onready var animationPlayer = get_node("AnimationPlayer")
-var velocity:Vector2 = Vector2(0,0)
 onready var sprite = get_node("Sprite")
 
 func _physics_process(delta):

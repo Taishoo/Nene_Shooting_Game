@@ -1,20 +1,10 @@
 extends "res://Scripts/Mob.gd"
 
-const type = "PLAYER"
-var walk_speed = 300
-const JUMP_FORCE = -900
+const type:String = "PLAYER"
+var walk_speed:float = 300
+const JUMP_FORCE:int = -900
 var state = START
-var can_fire = true
-
-var on_water:bool = false
-var underwater:bool = false
-var on_lava:bool = false
-
-var velocity:Vector2 = Vector2(0,0)
-
-
-var just_jumped = false
-var mouse_position = Vector2(0,0)
+var can_fire:bool = true
 
 onready var animationPlayer = get_node("AnimatedSprite/AnimationPlayer")
 onready var animatedSprite = get_node("AnimatedSprite")
@@ -27,14 +17,15 @@ enum {
 	WALK,
 	FAINT,
 	JUMP,
+	JUMPCUT,
 	FALL,
 	START,
 }
 
-func _ready():
+func _ready() -> void:
 	pass # Replace with function body.
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	special_checkers()
 	movement(delta)
 	
@@ -45,6 +36,8 @@ func _physics_process(delta):
 			walk()
 		JUMP:
 			jump()
+		JUMPCUT:
+			jump_cut()
 		FAINT:
 			faint()
 		FALL:
@@ -54,31 +47,35 @@ func _physics_process(delta):
 	
 #================State functions=================
 
-func start():
+func start() -> void:
 	animationPlayer.play("Start")
 
-func idle():
+func idle() -> void:
 	if not just_jumped:
 		animationPlayer.play("Idle" if is_on_floor() else "Fall")
 	
-func walk():
+func walk() -> void:
 	if not just_jumped:
 		animationPlayer.play("Walk" if is_on_floor() else "Fall")
 	
-func jump():
+func jump() -> void:
 	self.velocity.y = JUMP_FORCE
 	just_jumped = true
 	animationPlayer.play("Jump")
+
+func jump_cut() -> void:
+	if velocity.y < -500:
+		velocity.y = -500
 	
-func faint():
+func faint() -> void:
 	animationPlayer.play("Faint")
 	
-func fall():
+func fall() -> void:
 	animationPlayer.play("Fall")
 	
 #===================Special functions============
 
-func special_checkers():
+func special_checkers() -> void:
 	#flip sprite for aiming
 	if self.get_position().x > get_global_mouse_position().x:
 		animatedSprite.set_flip_h(true)
@@ -87,7 +84,7 @@ func special_checkers():
 	
 	bubbles.emitting = true if underwater and not on_lava else false
 
-func movement(delta):
+func movement(delta: float) -> void:
 	var gravity = Global.GRAVITY if not on_water else Global.GRAVITY * 0.05
 	var move_speed = walk_speed if not on_water else walk_speed * 0.5
 	
@@ -97,6 +94,10 @@ func movement(delta):
 	# regular jump
 	if Input.is_action_pressed("jump") and is_on_floor() and not on_water:
 		state = JUMP
+
+	# stop jumping
+	elif Input.is_action_just_released("jump") and not on_water:
+		state = JUMPCUT
 	
 	# jump on water (swim)
 	elif Input.is_action_pressed("jump") and on_water:
@@ -124,7 +125,7 @@ func movement(delta):
 	
 	velocity = move_and_slide(velocity * delta * 60, Vector2.UP)
 
-func shoot():
+func shoot() -> void:
 	if PlayerStats.WEAPON.name == "Handgun":
 		var bullet = preload("res://Prefabs/Nene_Bullet.tscn")
 		var projectile = bullet.instance()
@@ -141,24 +142,24 @@ func shoot():
 		coolDown.start(PlayerStats.WEAPON.cooldown)
 		can_fire = false
 			
-func take_damage(damage):
+func take_damage(damage: int) -> void:
 	PlayerStats.health -= damage
 
 	if not ui == null:
 		ui.animate_health()
 	
-func setAngleVector(targetPosition):
+func setAngleVector(targetPosition:Vector2) -> Vector2:
 	var angle = get_angle_to(targetPosition)
 	return Vector2(cos(angle), sin(angle))
 	
 #=================Sensor / Event Functions=================
 
-func start_animation_finished():
+func start_animation_finished() -> void:
 	state = IDLE
 
-func jump_animation_finished():
+func jump_animation_finished() -> void:
 	just_jumped = false
 
-func _on_Cooldown_timeout():
+func _on_Cooldown_timeout() -> void:
 	coolDown.stop()
 	can_fire= true

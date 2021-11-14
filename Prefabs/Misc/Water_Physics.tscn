@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Water_Physics.gd" type="Script" id=1]
+
+[node name="Water_Physics" type="Area2D"]
+visible = false
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 592.631, 160.82, 991.379, 160.311, 991.659, 175.867, 960.125, 175.727, 959.845, 191.984, 943.728, 191.844, 943.728, 207.821, 912.334, 207.681, 911.668, 224.079, 847.766, 223.658, 847.889, 240.097, 672.5, 240, 671.833, 223.833, 624, 223.667, 624, 207.833, 608.5, 208, 608.167, 191.833, 592.535, 191.788 )
+[connection signal="area_entered" from="." to="." method="_on_Water_Physics_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Water_Physics_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_Water_Physics_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Water_Physics_body_exited"]

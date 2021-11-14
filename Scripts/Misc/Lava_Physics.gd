@@ -9,7 +9,7 @@ var swimming = []
 
 onready var timer = get_node("Timer")
 
-func _physics_process(delta):
+func _physics_process(_delta) -> void:
 	check_swimming()
 
 #===============sensor functions======================

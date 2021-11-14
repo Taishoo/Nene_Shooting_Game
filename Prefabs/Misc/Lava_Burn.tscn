@@ -48,5 +48,6 @@ animation = "Burn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 anims/Burn = SubResource( 2 )
+[connection signal="tree_exiting" from="." to="." method="_on_Lava_Burn_tree_exiting"]
 [connection signal="timeout" from="DPS" to="." method="_on_DPS_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

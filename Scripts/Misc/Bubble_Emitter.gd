@@ -3,7 +3,7 @@ extends Node2D
 
 export var frequency:int = 1
 export var area_size:Vector2 = Vector2(10,10)
-export var burst:bool = false
+export var bursted:bool = false
 export var emitting:bool = true
 
 const particle = preload("res://Prefabs/Misc/Bubble.tscn")
@@ -11,12 +11,12 @@ const particle = preload("res://Prefabs/Misc/Bubble.tscn")
 onready var timer = get_node("Timer")
 
 func _ready():
-	if emitting and burst:
+	if emitting and bursted:
 		burst()
 
 
-func _physics_process(delta):
-	if emitting and not burst:
+func _physics_process(_delta):
+	if emitting and not bursted:
 		emit()
 	
 #==============special functions============

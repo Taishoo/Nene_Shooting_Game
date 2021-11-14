@@ -16,7 +16,7 @@ enum{
 func _ready():
 	set_size()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	special_checkers()
 	match state:
 		FLOAT:

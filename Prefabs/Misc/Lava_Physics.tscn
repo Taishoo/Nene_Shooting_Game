@@ -14,4 +14,3 @@ autostart = true
 [connection signal="area_exited" from="." to="." method="_on_Lava_Physics_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_Lava_Physics_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Lava_Physics_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
