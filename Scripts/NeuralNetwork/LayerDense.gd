@@ -19,8 +19,7 @@ func _init(n_inputs: int, n_neurons: int = 1, isbatch: bool = false) -> void:
 	self.weights = gdpy.rand_2d(num_range.x, num_range.y, n_inputs, n_neurons) 
 	self.bias = gdpy.rand_2d(bias_range.x, bias_range.y, n_neurons, 1)
 
-func forward(inputs: Array) -> void:
-	# f(x,w) = b + (Σ xi*wi)
+func forward(inputs: Array) -> void: # f(x,w) = b + (Σ xi*wi)
 	if not self.batch:
 		# single input with multiple layers of neurons
 		self.output = []

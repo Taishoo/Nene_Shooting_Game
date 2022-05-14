@@ -1,6 +1,6 @@
 extends Node
 
-const e = 0.5772156649
+const e = 2.71828
 var rng = RandomNumberGenerator.new()
 
 func _init():
@@ -55,4 +55,41 @@ func arr2d_pow(array: Array, exponent: float = e):
 		for n in array[i].size():
 			inner.push_back(pow(array[i][n],exponent))
 		result.push_back(inner)
+	return result
+	
+func arr_sum(array: Array):
+	var result = 0
+	for i in array.size():
+		result += array[i]
+	return result
+
+func arr2d_sum(array: Array, keep_dims: bool = false):
+	if not keep_dims:
+		var result = 0
+		for i in array.size():
+			for n in array[i].size():
+				result += array[i][n]
+		return result
+	else:
+		var result = []
+		for i in array.size():
+			var dim_sum = 0
+			for n in array[i].size():
+				dim_sum += array[i][n]
+			result.push_back(dim_sum)
+		return result
+
+func arr_div(array: Array, divisor: float):
+	var result = []
+	for i in array.size():
+		result.push_back(array[i]/divisor)
+	return result
+
+func arr2d_div(array: Array, divisor: float):
+	var result = []
+	for i in array.size():
+		var dim_quotient = []
+		for n in array[i].size():
+			dim_quotient.push_back(array[i][n]/divisor)
+		result.push_back(result)
 	return result

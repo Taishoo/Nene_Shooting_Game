@@ -6,8 +6,7 @@ var output = []
 func _init(isbatch: bool = false) -> void:
 		self.batch = isbatch
 
-func forward(inputs: Array) -> void:
-	# ReLU = (x > 0 → x) ∧ (x < 0 → 0)
+func forward(inputs: Array) -> void: # ReLU = (x > 0 → x) ∧ (x < 0 → 0)
 	if not self.batch:
 		# single input with multiple layers of neurons
 		self.output = []
