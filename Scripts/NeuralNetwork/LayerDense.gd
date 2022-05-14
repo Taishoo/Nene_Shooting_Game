@@ -5,7 +5,7 @@ const GDpy = preload("res://Scripts/NeuralNetwork/GDpy.gd")
 # layer configurations
 var gdpy: GDpy
 var batch: bool = false
-var bias_range = Vector2(-5, 5)
+var bias_range = Vector2(-1, 1)
 var num_range = Vector2(-1, 1)
 
 # NN variables

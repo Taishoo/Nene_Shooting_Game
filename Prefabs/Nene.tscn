@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Sprites/Nene/Start/Start_Handgun5.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Nene/Faint/Faint_Handgun1.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Sprites/Nene/Start/Start_Handgun4.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/Nene.gd" type="Script" id=14]
 [ext_resource path="res://Prefabs/Misc/Bubble_Emitter.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scripts/Sensors.gd" type="Script" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -23,19 +24,19 @@ animations = [ {
 "name": "Fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "Walk",
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Faint",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 3 ), ExtResource( 13 ), ExtResource( 1 ) ],
@@ -43,9 +44,9 @@ animations = [ {
 "name": "Start",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "Faint",
+"name": "Walk",
 "speed": 5.0
 } ]
 
@@ -281,7 +282,6 @@ anims/Start = SubResource( 6 )
 anims/Walk = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -0.0801081, -15.8469 )
 z_index = 1
 shape = SubResource( 8 )
@@ -309,4 +309,119 @@ emitting = false
 
 [node name="Knockback" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Ray1" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 2.35619
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray2" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -2.35619
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray3" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 3.14159
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray4" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray5" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray6" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray7" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 0.785398
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray8" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -0.785398
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray9" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -1.1781
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray10" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 1.1781
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray11" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 1.9635
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray12" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -1.9635
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray13" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -2.74889
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray14" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 2.74889
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray15" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 5.89049
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Ray16" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -5.89049
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 524288
+
+[node name="Sensors" type="Node2D" parent="."]
+position = Vector2( 0, -9.828 )
+script = ExtResource( 16 )
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]

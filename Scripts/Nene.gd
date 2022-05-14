@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func _physics_process(delta) -> void:
 	special_checkers()
-	movement(delta)
+	#movement(delta)
 	
 	match state:
 		IDLE:
@@ -83,6 +83,46 @@ func special_checkers() -> void:
 		animatedSprite.set_flip_h(false)
 	
 	bubbles.emitting = true if underwater and not on_lava else false
+
+func neural_control(output: Array, delta) -> void:
+	# 0 = left, 1 = right, 2 = jump
+	var gravity = Global.GRAVITY if not on_water else Global.GRAVITY * 0.05
+	var move_speed = walk_speed if not on_water else walk_speed * 0.5
+
+	var left = true if output[0]==1 else false
+	var right = true if output[1]==1 else false
+	var jump = true if output[2]==1 else false
+
+	
+	# regular jump
+	if jump and is_on_floor() and not on_water:
+		state = JUMP
+	
+	# jump on water (swim)
+	elif jump and on_water:
+		self.velocity.y = -move_speed
+	
+	# sink on water
+	elif Input.is_action_pressed("crouch") and on_water:
+		self.velocity.y = move_speed
+	
+	# move left
+	elif left:
+		self.velocity.x = -move_speed
+		state = WALK
+	
+	# move right
+	elif right:
+		self.velocity.x = move_speed
+		state = WALK
+			
+	else:
+		self.velocity.x = 0
+		state = IDLE
+
+	self.velocity.y = self.velocity.y + gravity	
+	velocity = move_and_slide(velocity * delta * 60, Vector2.UP)
+	
 
 func movement(delta: float) -> void:
 	var gravity = Global.GRAVITY if not on_water else Global.GRAVITY * 0.05
