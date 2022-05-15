@@ -1,6 +1,6 @@
 extends Node2D
 
-const limit = 300
+const limit = 500
 
 onready var player = get_parent()
 onready var point = get_parent().get_node("Contact")

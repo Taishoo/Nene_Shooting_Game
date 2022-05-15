@@ -15,22 +15,33 @@ onready var layer1 = LayerDense.new(18,7)
 onready var activation1 = ActivationReLu.new()
 onready var layer2 = LayerDense.new(7,7)
 onready var activation2 = ActivationReLu.new()
-onready var layer_output = LayerDense.new(7,3)
-onready var activation_output = ActivationBinary.new()
+onready var layer3 = LayerDense.new(7,3)
+onready var activation3 = ActivationBinary.new()
+
+func _ready():
+	set_initial_best_generation()
 
 func _physics_process(delta) -> void:
 	var input = gdpy.arr_dot(player_sensor.sensor_output, 1)
 	front_propagate(input, delta)
-
 
 func front_propagate(input, delta) -> void:
 	layer1.forward(input)
 	activation1.forward(layer1.output)
 	layer2.forward(activation1.output)
 	activation2.forward(layer2.output)
-	layer_output.forward(activation2.output)
-	activation_output.forward(layer_output.output)
-	player.neural_control(activation_output.output, delta)
+	layer3.forward(activation2.output)
+	activation3.forward(layer3.output)
+	player.neural_control(activation3.output, delta)
+
+func set_initial_best_generation():
+	print("initial gen set")
+	Global.best_layer1_weights = layer1.weights
+	Global.best_layer1_bias = layer1.bias
+	Global.best_layer2_weights = layer2.weights
+	Global.best_layer2_bias = layer2.bias
+	Global.best_layer3_weights = layer3.weights
+	Global.best_layer3_bias = layer3.bias
 
 
 

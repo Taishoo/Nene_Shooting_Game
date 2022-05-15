@@ -248,4 +248,34 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Epoch" type="Label" parent="."]
+margin_left = 2.79826
+margin_top = 208.297
+margin_right = 44.7983
+margin_bottom = 222.297
+text = "Epoch:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EpochTime" type="Label" parent="."]
+margin_left = 2.13084
+margin_top = 193.169
+margin_right = 80.1308
+margin_bottom = 207.169
+text = "Epoch Time:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Generation" type="Label" parent="."]
+margin_left = 2.16829
+margin_top = 223.416
+margin_right = 77.1683
+margin_bottom = 237.416
+text = "Generation:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="Air/Timer" to="Air" method="_on_Timer_timeout"]

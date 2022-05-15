@@ -93,3 +93,20 @@ func arr2d_div(array: Array, divisor: float):
 			dim_quotient.push_back(array[i][n]/divisor)
 		result.push_back(result)
 	return result
+
+func arr_add(array1: Array, array2: Array):
+	# should be the same length
+	var result = []
+	for i in array1.size():
+		result.push_back(array1[i] + array2[i])
+	return result
+
+func arr2d_add(array1: Array, array2: Array):
+	# shape should be consistent
+	var result = []
+	for i in array1.size():
+		var batch = []
+		for n in array1[i].size():
+			batch.push_back(array1[i][n] + array2[i][n])
+		result.push_back(batch)
+	return result
