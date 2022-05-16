@@ -2,6 +2,9 @@ extends Node
 
 const save_path = "user://model.json"
 
+var mutation_rate = 0.2
+var mutation_enabled = true
+
 const GRAVITY:float = 30.00
 var epoch_timer: int = 7
 

@@ -249,11 +249,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -1.0
+margin_top = 158.0
+margin_right = 80.0
+margin_bottom = 239.0
+color = Color( 0, 0, 0, 0.313726 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Epoch" type="Label" parent="."]
 margin_left = 2.79826
 margin_top = 208.297
 margin_right = 44.7983
 margin_bottom = 222.297
+rect_scale = Vector2( 0.5, 0.5 )
 text = "Epoch:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -264,6 +275,7 @@ margin_left = 2.13084
 margin_top = 193.169
 margin_right = 80.1308
 margin_bottom = 207.169
+rect_scale = Vector2( 0.5, 0.5 )
 text = "Epoch Time:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -274,7 +286,30 @@ margin_left = 2.16829
 margin_top = 223.416
 margin_right = 77.1683
 margin_bottom = 237.416
+rect_scale = Vector2( 0.5, 0.5 )
 text = "Generation:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MutationRate" type="Label" parent="."]
+margin_left = 1.69689
+margin_top = 178.161
+margin_right = 90.6969
+margin_bottom = 192.161
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Mutation Rate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MutationEnabled" type="Label" parent="."]
+margin_left = 1.81474
+margin_top = 163.548
+margin_right = 90.8147
+margin_bottom = 177.548
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Mutation Enabled:"
 __meta__ = {
 "_edit_use_anchors_": false
 }

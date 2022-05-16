@@ -35,14 +35,16 @@ func _physics_process(_delta) -> void:
 		load_model()
 
 func calculate_loss() -> void:
-	var t = Global.timer if Global.timer != 0 else 0.001
+	var start_height = 457.962
+	var player_height = -(player.get_position().y - start_height) * 0.001
+	var t = Global.timer if Global.timer != 0 else 0.00001
 	var s = Global.points_on_hold
 	var u_best = Global.data.u_best
-	var u_next = ( s - (t * 0.01) ) * 0.1
+	var u_next = ( s + player_height - (t * 0.01) ) * 0.1
 
 	print(str(u_next) + " = " + str(u_best))
 
-	if u_next > u_best:
+	if u_next >= u_best:
 		Global.data.u_best = u_next
 		Global.data.generation += 1
 		set_best_generation()
@@ -71,21 +73,23 @@ func load_model():
 
 func reset_and_increment() -> void:
 	# reset
+	var mutation_rate = Global.mutation_rate
 	Global.timer = 0
 	Global.points_on_hold = 0
 	PlayerStats.points = 0
-	player.position = Vector2(550.828, 322.242)
-	coin.change_location()
+	player.position = Vector2(355.814, 457.962)
+	coin.spawn()
 
 	# increment
 	Global.data.epoch += 1
 	#increment set weights and biases
-	model.layer1.weights = gdpy.arr2d_add(model.layer1.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 18,7), 0.5))
-	model.layer1.bias = gdpy.arr_add(model.layer1.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 7,1), 0.5))
-	model.layer2.weights = gdpy.arr2d_add(model.layer2.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 7,7), 0.5))
-	model.layer2.bias = gdpy.arr_add(model.layer2.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 7,1), 0.5))
-	model.layer3.weights = gdpy.arr2d_add(model.layer3.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 7,3), 0.5))
-	model.layer3.bias = gdpy.arr_add(model.layer3.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 3,1), 0.5))
+	if Global.mutation_enabled:
+		model.layer1.weights = gdpy.arr2d_add(model.layer1.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 18,7), mutation_rate))
+		model.layer1.bias = gdpy.arr_add(model.layer1.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 7,1), mutation_rate))
+		model.layer2.weights = gdpy.arr2d_add(model.layer2.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 7,7), mutation_rate))
+		model.layer2.bias = gdpy.arr_add(model.layer2.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 7,1), mutation_rate))
+		model.layer3.weights = gdpy.arr2d_add(model.layer3.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 7,3), mutation_rate))
+		model.layer3.bias = gdpy.arr_add(model.layer3.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 3,1), mutation_rate))
 
 func set_best_generation():
 	print("superior generation has found")
