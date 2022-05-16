@@ -8,8 +8,8 @@ onready var generation = get_node("Generation")
 
 func _physics_process(_delta) -> void:
 	points.text = str(PlayerStats.points).pad_zeros(4)
-	epoch.text = "Epoch: " + str(Global.epoch)
-	generation.text = "Generation: " + str(Global.generation)
+	epoch.text = "Epoch: " + str(Global.data.epoch)
+	generation.text = "Generation: " + str(Global.data.generation)
 	epoch_time.text = "Epoch Time: " + str(Global.epoch_timer) + "s"
 
 func animate_health() -> void:

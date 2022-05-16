@@ -36,12 +36,12 @@ func front_propagate(input, delta) -> void:
 
 func set_initial_best_generation():
 	print("initial gen set")
-	Global.best_layer1_weights = layer1.weights
-	Global.best_layer1_bias = layer1.bias
-	Global.best_layer2_weights = layer2.weights
-	Global.best_layer2_bias = layer2.bias
-	Global.best_layer3_weights = layer3.weights
-	Global.best_layer3_bias = layer3.bias
+	Global.data.model.layer1_weights = layer1.weights
+	Global.data.model.layer1_bias = layer1.bias
+	Global.data.model.layer2_weights = layer2.weights
+	Global.data.model.layer2_bias = layer2.bias
+	Global.data.model.layer3_weights = layer3.weights
+	Global.data.model.layer3_bias = layer3.bias
 
 
 
