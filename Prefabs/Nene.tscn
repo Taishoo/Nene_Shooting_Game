@@ -29,11 +29,6 @@ animations = [ {
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "Faint",
@@ -42,6 +37,11 @@ animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 3 ), ExtResource( 13 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "Start",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ) ],
@@ -310,116 +310,227 @@ emitting = false
 [node name="Knockback" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="Ray1" type="RayCast2D" parent="."]
+[node name="Ray1p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = 2.35619
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray2" type="RayCast2D" parent="."]
+[node name="Ray2p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = -2.35619
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray3" type="RayCast2D" parent="."]
+[node name="Ray3p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = 3.14159
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray4" type="RayCast2D" parent="."]
+[node name="Ray4p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = 1.5708
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray5" type="RayCast2D" parent="."]
+[node name="Ray5p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray6" type="RayCast2D" parent="."]
+[node name="Ray6p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray7" type="RayCast2D" parent="."]
+[node name="Ray7p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = 0.785398
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray8" type="RayCast2D" parent="."]
+[node name="Ray8p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = -0.785398
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray9" type="RayCast2D" parent="."]
+[node name="Ray9p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = -1.1781
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray10" type="RayCast2D" parent="."]
+[node name="Ray10p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = 1.1781
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray11" type="RayCast2D" parent="."]
+[node name="Ray11p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = 1.9635
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray12" type="RayCast2D" parent="."]
+[node name="Ray12p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = -1.9635
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray13" type="RayCast2D" parent="."]
+[node name="Ray13p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = -2.74889
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray14" type="RayCast2D" parent="."]
+[node name="Ray14p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = 2.74889
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray15" type="RayCast2D" parent="."]
+[node name="Ray15p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = 5.89049
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
 
-[node name="Ray16" type="RayCast2D" parent="."]
+[node name="Ray16p" type="RayCast2D" parent="."]
 position = Vector2( 0, -9.828 )
 rotation = -5.89049
 enabled = true
 cast_to = Vector2( 0, 100 )
-collision_mask = 524288
+collision_mask = 256
+
+[node name="Ray1w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 2.35619
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray2w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -2.35619
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray3w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 3.14159
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray4w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray5w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray6w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray7w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 0.785398
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray8w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -0.785398
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray9w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -1.1781
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray10w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 1.1781
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray11w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 1.9635
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray12w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -1.9635
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray13w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -2.74889
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray14w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 2.74889
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray15w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = 5.89049
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
+
+[node name="Ray16w" type="RayCast2D" parent="."]
+position = Vector2( 0, -9.828 )
+rotation = -5.89049
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 512
 
 [node name="Sensors" type="Node2D" parent="."]
 position = Vector2( 0, -9.828 )

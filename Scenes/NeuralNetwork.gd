@@ -11,14 +11,15 @@ onready var player = get_tree().get_current_scene().get_node("World/Nene")
 onready var player_sensor = player.get_node("Sensors")
 
 # neural network setup
-onready var layer1 = LayerDense.new(18,7)
+onready var layer1 = LayerDense.new(35,12)
 onready var activation1 = ActivationReLu.new()
-onready var layer2 = LayerDense.new(7,7)
+onready var layer2 = LayerDense.new(12,12)
 onready var activation2 = ActivationReLu.new()
-onready var layer3 = LayerDense.new(7,3)
+onready var layer3 = LayerDense.new(12,3)
 onready var activation3 = ActivationBinary.new()
 
 func _ready():
+	Engine.time_scale = Global.speed
 	set_initial_best_generation()
 
 func _physics_process(delta) -> void:

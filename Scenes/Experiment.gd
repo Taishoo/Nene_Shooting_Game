@@ -14,6 +14,7 @@ func _ready():
 func _physics_process(_delta) -> void:
 
 	if Input.is_action_just_pressed("next_epoch"): # P
+		get_node("EpochTimer").start(Global.epoch_timer)
 		calculate_loss()
 
 	if Input.is_action_just_pressed("display_values"): # O
@@ -40,7 +41,7 @@ func calculate_loss() -> void:
 	var t = Global.timer if Global.timer != 0 else 0.00001
 	var s = Global.points_on_hold
 	var u_best = Global.data.u_best
-	var u_next = ( s + player_height - (t * 0.01) ) * 0.1
+	var u_next = ( s + player_height - (t * 0.001) ) * 0.1
 
 	print(str(u_next) + " = " + str(u_best))
 
@@ -84,12 +85,12 @@ func reset_and_increment() -> void:
 	Global.data.epoch += 1
 	#increment set weights and biases
 	if Global.mutation_enabled:
-		model.layer1.weights = gdpy.arr2d_add(model.layer1.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 18,7), mutation_rate))
-		model.layer1.bias = gdpy.arr_add(model.layer1.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 7,1), mutation_rate))
-		model.layer2.weights = gdpy.arr2d_add(model.layer2.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 7,7), mutation_rate))
-		model.layer2.bias = gdpy.arr_add(model.layer2.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 7,1), mutation_rate))
-		model.layer3.weights = gdpy.arr2d_add(model.layer3.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 7,3), mutation_rate))
-		model.layer3.bias = gdpy.arr_add(model.layer3.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 3,1), mutation_rate))
+		model.layer1.weights = gdpy.arr2d_add(model.layer1.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 35,12), mutation_rate))
+		model.layer1.bias = gdpy.arr_add(model.layer1.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 12,1), mutation_rate))
+		model.layer2.weights = gdpy.arr2d_add(model.layer2.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 12,12), mutation_rate))
+		model.layer2.bias = gdpy.arr_add(model.layer2.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 12,1), mutation_rate))
+		model.layer3.weights = gdpy.arr2d_add(model.layer3.weights, gdpy.arr2d_dot(gdpy.rand_2d(-1, 1, 12,3), mutation_rate))
+		model.layer3.bias = gdpy.arr_add(model.layer3.bias, gdpy.arr_dot(gdpy.rand_2d(-1, 1, 12,1), mutation_rate))
 
 func set_best_generation():
 	print("superior generation has found")

@@ -2,6 +2,7 @@ extends Node
 
 const save_path = "user://model.json"
 
+const speed = 1
 var mutation_rate = 0.2
 var mutation_enabled = true
 
