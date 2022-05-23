@@ -93,7 +93,6 @@ func neural_control(output: Array, delta) -> void:
 	var right = true if output[1]==1 else false
 	var jump = true if output[2]==1 else false
 
-	
 	# regular jump
 	if jump and is_on_floor() and not on_water:
 		state = JUMP
@@ -203,3 +202,6 @@ func jump_animation_finished() -> void:
 func _on_Cooldown_timeout() -> void:
 	coolDown.stop()
 	can_fire= true
+
+func on_jump() -> void:
+	Global.jump_count += 1

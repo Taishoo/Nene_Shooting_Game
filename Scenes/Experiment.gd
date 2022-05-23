@@ -38,10 +38,11 @@ func _physics_process(_delta) -> void:
 func calculate_loss() -> void:
 	var start_height = 457.962
 	var player_height = -(player.get_position().y - start_height) * 0.001
-	var t = Global.timer if Global.timer != 0 else 0.00001
+	var t = Global.timer if Global.timer != 0 else 1
 	var s = Global.points_on_hold
+	var j = Global.jump_count * 0.01 if Global.jump_count != 0 else 1
 	var u_best = Global.data.u_best
-	var u_next = ( s + player_height - (t * 0.001) ) * 0.1
+	var u_next = (( s + player_height - (t * 0.001) ) - j) * 0.1
 
 	print(str(u_next) + " = " + str(u_best))
 
@@ -77,8 +78,10 @@ func reset_and_increment() -> void:
 	var mutation_rate = Global.mutation_rate
 	Global.timer = 0
 	Global.points_on_hold = 0
+	Global.jump_count = 0
 	PlayerStats.points = 0
 	player.position = Vector2(355.814, 457.962)
+	model.start()
 	coin.spawn()
 
 	# increment
